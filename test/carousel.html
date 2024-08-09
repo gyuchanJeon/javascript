@@ -28,7 +28,7 @@
         #wrapper ul li:nth-child(1) {left: 0; top: 0;}
         #wrapper ul li:nth-child(2) {left: 100%; top: 0;}
         #wrapper ul li:nth-child(3) {left: 100%; top: 0;}
-        
+
         #wrapper ul li img {
             width: 100%;
             height: 100%;
@@ -37,36 +37,38 @@
     </style>
     <script>
 
-      window.onload = function () {
+        window.onload = function(){
 
-        const slides = document.getElementsByTagName('li');
-        let current = 0;
-        
-        setInterval(() => {
-          
-            slides[current].style.left = '-100%';
+            const slides = document.getElementsByTagName('li');
+            let current = 0;
             
-            current++;
 
-            if (current>2) {
-              slides[current-2].style.left = '100%';
-              current = 0;
-              slides[current].style.left = '0';
-            } else if (current == 1) {
-              slides[current].style.left = '0';
-            } else if (current == 2) {
-              slides[current].style.left = '0';
-              slides[current-2].style.left = '100%';
-            }
-        }, 3000);
-        
-      }
-      
-      
-      
-    </script>
-    
-    
+            setInterval(() => {
+                
+                slides[current].style.left = '-100%';
+                slides[current].style.zIndex = 1;
+
+                current++;
+
+                if(current > 2){
+                    current = 0;
+                }
+
+                slides[current].style.left = '0';
+                slides[current].style.zIndex = 2; // 메인 슬라이드는 항상 top으로 되도록 z값을 2
+
+                // 3번 이미지가 왼쪽으로 빠질때 1번 이미지는 다시 오른쪽으로 위치 이동
+                if(current > 1){
+                    slides[0].style.left = '100%';
+                    slides[0].style.zIndex = -1;
+                }
+
+                slides[current+1].style.left = '100%';
+                slides[current+1].style.zIndex = -1; // 오른쪽 준비 위치로 이동할때는 다른 슬라이드 이미지보다 아래쪽으로 이동하도록 z값을 -1
+
+            }, 3000);
+        }
+    </script>    
 </head>
 <body>
     <div id="wrapper">

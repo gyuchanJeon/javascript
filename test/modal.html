@@ -65,26 +65,23 @@
 	  line-height:1.5;
 	}
   </style>
-  <script>
-    window.onload = function () {
-      
-      const btnOpen = document.getElementsByName('open');
-      const btnClose = document.getElementsByName('close');
+    <script>
+        window.onload = function(){
+            const modalBox = document.querySelector("#modal-box");
+            const btnOpen = document.getElementById('open');
+            const btnClose = document.getElementById('close');
 
-      btnOpen.onclick = function () {
-        // modal-box class 속성값 active 설정
-      }
-      
-      btnClose.onclick = function () {
-        // modal-box class 속성값 active 해제
-      }
-      
-    }
-    
-    
-    
-  </script>
-  
+            btnOpen.onclick = function(){
+                // modal-box class 속성값 active 설정
+                modalBox.classList.add("active"); // 클릭하면 클래스리스트에 .active 스타일 추가
+            }
+
+            btnClose.onclick = function(){
+                // modal-box class 속성값 active 해제
+                modalBox.classList.remove("active");
+            }
+        }
+    </script>
 </head>
 <body>
   <button id="open">프로필 보기</button>

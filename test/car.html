@@ -28,29 +28,29 @@
     </style>
 
     <script>
-      window.onload = function () {
-        
-        const totalImages = 120;
-        const slider = document.getElementById('slider');
+        window.onload = function() {
 
-        slider.addEventListener('mousemove', function(e){
+            const totalImages = 120;
+            const slider = document.getElementById('slider');
+            const img = slider.querySelector('img');
 
-          const sliderRect = slider.getBoundingClientRect();
-          const mouseX = e.clientX - sliderRect.left;
-          
-          // 슬라이더의 너비를 기준으로 이미지 인덱스 계산
-          const sliderWidth = slider.offsetWidth;
-          const imgIndex = Math.min(Math.floor((mouseX / sliderWidth) * totalImages), totalImages - 1);
+            slider.addEventListener('mousemove', function(e){
 
-          console.log('imgIndex : ' + imgIndex);
-          
-        });
-        
-      }
-      
-      
-      
+                const sliderRect = slider.getBoundingClientRect();
+                const mouseX = event.clientX - sliderRect.left;
+                
+                // 슬라이더의 너비를 기준으로 이미지 인덱스 계산
+                const sliderWidth = slider.offsetWidth;
+                const imgIndex = Math.min(Math.floor((mouseX / sliderWidth) * totalImages), totalImages - 1);
+                
+                console.log('imgIndex : ' + imgIndex);
+
+                // 이미지 태그의 src 속성 수정
+                img.src = `./images/car/car${imgIndex}.jpg`;
+            });
+        }
     </script>
+
 </head>
 <body>
     <div id="slider">
